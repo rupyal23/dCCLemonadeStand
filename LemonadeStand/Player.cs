@@ -18,9 +18,44 @@ namespace LemonadeStand
         public double playerDailyLoss;
         public double playerRunningTotal;
 
+        public Player(string firstName, double playerMoney, int playerCups, int playerLemons, int playerSugarCubes, int playerIceCubes)
+        {
+            this.firstName = firstName;
+            this.playerMoney = playerMoney;
+            this.playerCups = playerCups;
+            this.playerLemons = playerLemons;
+            this.playerSugarCubes = playerSugarCubes;
+            this.playerIceCubes = playerIceCubes;
+
+        }
+
         public Player()
         {
-            
+
+        }
+
+        public void GetPlayerName()
+        {
+            do
+            {
+                Console.WriteLine("Please enter your name");
+                firstName = Console.ReadLine();
+            }
+            while (!CheckName(firstName));
+        }
+        
+
+        bool CheckName(string firstName)
+        {
+            foreach(char a in firstName)
+            {
+                if(!Char.IsLetter(a))
+                {
+                    Console.WriteLine("Enter letters only. Please try again!");
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
