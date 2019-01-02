@@ -9,5 +9,6 @@ namespace LemonadeStand
     class Customer
     {
         public double money;
+        
     }
 }
