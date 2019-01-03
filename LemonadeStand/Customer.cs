@@ -9,6 +9,7 @@ namespace LemonadeStand
     class Customer
     {
         public double money;
+        public List<string> ChanceToBuy = new List<string>() { "zero", "low", "high" };
         
 
         //member methods

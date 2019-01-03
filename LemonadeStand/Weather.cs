@@ -10,9 +10,7 @@ namespace LemonadeStand
     {
         public float dayTemperature;
         public List<string> weatherType = new List<string>() { "hot", "sunny", "cloudy", "rainy", "cold" };
-
-
-
+        
         //member methods
         public string CreateWeatherType()
         {
@@ -28,6 +26,7 @@ namespace LemonadeStand
             int currentTemperature = todaysTemperature.Next(min, max);
             return currentTemperature;
         }
+
         public void CreateWeather()
         {
             int currentDayTemperature;
@@ -98,7 +97,7 @@ namespace LemonadeStand
             List<string> ForecastList = new List<string>();
             for(int i = 0; i < 7; i++)
             {
-                ForecastList.Add(weatherList[i].ToUpper() + " with high Temperature of " + temperatureForecast[i]);
+                ForecastList.Add(weatherList[i].ToUpper() + " with high Temperature of " + temperatureForecast[i] + " degrees Fahrenheit.");
             }
           
             string currentDay = DateTime.Now.DayOfWeek.ToString();
@@ -110,6 +109,7 @@ namespace LemonadeStand
             }
         }
 
+        //gotta do something with this yet/maybe display the forecast here instead from generateforeacasttemp method
         public void DisplayForecast()
         {
             

@@ -44,10 +44,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChildCustomer.cs" />
+    <Compile Include="Cups.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Day.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Ice.cs" />
     <Compile Include="Inventory.cs" />
+    <Compile Include="Lemons.cs" />
     <Compile Include="OfficeCustomer.cs" />
     <Compile Include="OldCustomer.cs" />
     <Compile Include="Player.cs" />
@@ -55,6 +58,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RunningCustomer.cs" />
     <Compile Include="Store.cs" />
+    <Compile Include="Sugar.cs" />
     <Compile Include="UserInterface.cs" />
     <Compile Include="Weather.cs" />
     <Compile Include="YoungCustomer.cs" />

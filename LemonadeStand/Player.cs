@@ -9,31 +9,19 @@ namespace LemonadeStand
     class Player
     {
         public string firstName;
-        public double playerMoney;
-        public int playerCups;
-        public int playerLemons;
-        public int playerSugarCubes;
-        public int playerIceCubes;
-        public double playerDailyProfit;
-        public double playerDailyLoss;
-        public double playerRunningTotal;
+        public double playerMoney = 25;
 
-        public Player(string firstName, double playerMoney, int playerCups, int playerLemons, int playerSugarCubes, int playerIceCubes)
-        {
-            this.firstName = firstName;
-            this.playerMoney = playerMoney;
-            this.playerCups = playerCups;
-            this.playerLemons = playerLemons;
-            this.playerSugarCubes = playerSugarCubes;
-            this.playerIceCubes = playerIceCubes;
+        public Inventory playerInventory = new Inventory();
 
-        }
-
+        //constructor
         public Player()
         {
 
         }
 
+        //member methods
+
+        //inputs the player name
         public void GetPlayerName()
         {
             do
@@ -44,7 +32,7 @@ namespace LemonadeStand
             while (!CheckName(firstName));
         }
 
-
+        //helper function to validate the name of the player
         bool CheckName(string firstName)
         {
             foreach (char a in firstName)
@@ -58,6 +46,16 @@ namespace LemonadeStand
             return true;
         }
 
+       
 
+        public void SetCupPrice()
+        {
+
+        }
+
+        public void SellLemonade()
+        {
+
+        }
     }
 }

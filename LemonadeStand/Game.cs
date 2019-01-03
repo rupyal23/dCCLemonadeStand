@@ -9,24 +9,27 @@ namespace LemonadeStand
     class Game
     {
         //Member Variables
-        Player player1 = new Player();
-        Weather todaysWeather = new Weather();
+        public Player player1 = new Player();
+        public Store myStore = new Store();
+        public Day newDay = new Day();
+
         
 
         //Member Methods
         public void RunGame()
         {
-            Console.WriteLine("Welcome to the LEMONADE STAND.");
-            Console.ReadLine();
             player1.GetPlayerName();
+            Console.WriteLine("Hey "+player1.firstName+"!. Ready to own a LEMONADE STAND!!");
             DisplayRules();
-            todaysWeather.CreateWeather();
+            newDay.todaysWeather.CreateWeather();
+            myStore.SellCups(player1);
             Console.ReadLine();
         }
 
         public void DisplayRules()
         {
             Console.WriteLine("Rules of the Game");
+            Console.WriteLine("Player will have $25 to start their own Lemonade Stand.");
         }
     }
 }

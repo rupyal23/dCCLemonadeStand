@@ -10,10 +10,10 @@ namespace LemonadeStand
     {
         static void Main(string[] args)
         {
-            //Game myGame = new Game();
-            //myGame.RunGame();
-            Weather getForecast = new Weather();
-            getForecast.GenerateForecastTemperature();
+            Game myGame = new Game();
+            myGame.RunGame();
+            //Weather getForecast = new Weather();
+            //getForecast.GenerateForecastTemperature();
             Console.ReadLine();
         }
     }
