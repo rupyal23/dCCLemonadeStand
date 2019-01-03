@@ -9,5 +9,12 @@ namespace LemonadeStand
     class Day
     {
         
+        //member varibles
+        public int daytemperature;
+        public string weatherType;
+        public int numberOfCustomers;
+        
+
+        //member methods
     }
 }

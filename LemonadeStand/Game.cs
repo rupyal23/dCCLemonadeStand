@@ -16,6 +16,9 @@ namespace LemonadeStand
         //Member Methods
         public void RunGame()
         {
+            Console.WriteLine("Welcome to the LEMONADE STAND.");
+            Console.ReadLine();
+            player1.GetPlayerName();
             DisplayRules();
             todaysWeather.CreateWeather();
             Console.ReadLine();

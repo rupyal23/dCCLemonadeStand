@@ -10,5 +10,16 @@ namespace LemonadeStand
     {
         public double money;
         
+
+        //member methods
+        public void CustomerBuysLemonade()
+        {
+
+        }
+
+        public void CustomerGivesResponse()
+        {
+
+        }
     }
 }

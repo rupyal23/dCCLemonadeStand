@@ -12,8 +12,8 @@ namespace LemonadeStand
         {
             //Game myGame = new Game();
             //myGame.RunGame();
-            Player player1 = new Player();
-            player1.GetPlayerName();
+            Weather getForecast = new Weather();
+            getForecast.GenerateForecastTemperature();
             Console.ReadLine();
         }
     }

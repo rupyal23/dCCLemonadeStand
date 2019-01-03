@@ -43,13 +43,13 @@ namespace LemonadeStand
             }
             while (!CheckName(firstName));
         }
-        
+
 
         bool CheckName(string firstName)
         {
-            foreach(char a in firstName)
+            foreach (char a in firstName)
             {
-                if(!Char.IsLetter(a))
+                if (!Char.IsLetter(a))
                 {
                     Console.WriteLine("Enter letters only. Please try again!");
                     return false;
@@ -57,5 +57,7 @@ namespace LemonadeStand
             }
             return true;
         }
+
+
     }
 }
