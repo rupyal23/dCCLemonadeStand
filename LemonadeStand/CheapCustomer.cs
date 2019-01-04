@@ -6,25 +6,25 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class YoungCustomer : Customer
+    class CheapCustomer : Customer
     {
         public override bool BuyLemonade(Weather weather, Player player)
         {
             CustomerExpectedPrice(player);
 
-            if (chanceToBuy == 10 && weather.dayTemperature > 32)
+            if (chanceToBuy == 10 && weather.dayTemperature > 80)
             {
                 return true;
             }
-            if (chanceToBuy < 10 && chanceToBuy >= 8 && weather.dayTemperature > 55)
+            if (chanceToBuy < 10 && chanceToBuy >= 8 && weather.dayTemperature > 82)
             {
                 return true;
             }
-            if (chanceToBuy >= 5 && chanceToBuy < 8 && weather.dayTemperature > 63)
+            if (chanceToBuy >= 5 && chanceToBuy < 8 && weather.dayTemperature > 90)
             {
                 return true;
             }
-            else if (chanceToBuy < 5 && chanceToBuy >= 3 && weather.dayTemperature > 74)
+            else if (chanceToBuy < 5 && chanceToBuy >= 3 && weather.dayTemperature > 95)
             {
                 return true;
             }

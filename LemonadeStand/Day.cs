@@ -9,21 +9,18 @@ namespace LemonadeStand
     class Day
     {
         //member varibles
-        public int daytemperature;
-        public string weatherType;
-        public int numberOfCustomers;
-        public Weather todaysWeather = new Weather();
+        public int currentDayTemperature;
+        public string currentDayWeatherType;
+        public Weather dayWeather = new Weather();   //instantiated weather for the day
+        public List<Customer> todaysCustomers = new List<Customer>();    //instantiated customers for the day
         
 
         //member methods
         public void CreateDayWeather()
         {
-
-        }
-
-        public void CreateCustomers()
-        {
-
+            dayWeather.CreateWeather();
+            currentDayTemperature = dayWeather.dayTemperature;
+            currentDayWeatherType = dayWeather.weatherType;
         }
 
         public void PlayerInventory()

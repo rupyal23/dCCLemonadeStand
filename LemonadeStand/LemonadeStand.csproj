@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheapCustomer.cs" />
     <Compile Include="ChildCustomer.cs" />
     <Compile Include="Cups.cs" />
     <Compile Include="Customer.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="RunningCustomer.cs" />
     <Compile Include="Store.cs" />
     <Compile Include="Sugar.cs" />
+    <Compile Include="ThirstyCustomer.cs" />
     <Compile Include="UserInterface.cs" />
     <Compile Include="Weather.cs" />
     <Compile Include="YoungCustomer.cs" />

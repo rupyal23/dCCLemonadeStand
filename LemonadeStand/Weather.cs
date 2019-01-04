@@ -8,59 +8,60 @@ namespace LemonadeStand
 {
     class Weather
     {
-        public float dayTemperature;
-        public List<string> weatherType = new List<string>() { "hot", "sunny", "cloudy", "rainy", "cold" };
+        public int dayTemperature;
+        public List<string> weatherTypeList = new List<string>() { "hot", "sunny", "cloudy", "rainy", "cold" };
+        public string weatherType;
+        public int temperature;
         
         //member methods
         public string CreateWeatherType()
         {
             Random todaysWeather = new Random();
-            int position = todaysWeather.Next(weatherType.Count);
-            string currentWeatherType = weatherType[position];
-            return currentWeatherType;
+            int position = todaysWeather.Next(weatherTypeList.Count);
+            string weatherType = weatherTypeList[position];
+            return weatherType;
         }
                  
         public int CreateTemperature(int min, int max)
         {
             Random todaysTemperature = new Random();
-            int currentTemperature = todaysTemperature.Next(min, max);
-            return currentTemperature;
+            temperature = todaysTemperature.Next(min, max);
+            return temperature;
         }
 
         public void CreateWeather()
         {
-            int currentDayTemperature;
             string currentDayWeatherType = CreateWeatherType();
             if(currentDayWeatherType == "hot")
             {
-                currentDayTemperature = CreateTemperature(88, 110);
+                dayTemperature = CreateTemperature(88, 110);
             }
             else if(currentDayWeatherType == "sunny")
             {
-                currentDayTemperature = CreateTemperature(70, 87);
+                dayTemperature = CreateTemperature(70, 87);
             }
             else if(currentDayWeatherType == "cloudy" || currentDayWeatherType == "rainy")
             {
-                currentDayTemperature = CreateTemperature(45, 69);
+                dayTemperature = CreateTemperature(45, 69);
             }
             else
             {
-                currentDayTemperature = CreateTemperature(25, 45);
+                dayTemperature = CreateTemperature(25, 45);
             }
             Console.WriteLine("Weather today is "+currentDayWeatherType.ToUpper());
-            Console.WriteLine("Temperature High will be "+currentDayTemperature+" degrees.");
+            Console.WriteLine("Temperature High will be "+dayTemperature+" degrees.");
         }
         public List<string> GenerateForecastWeatherType()
         {
             List<string> weatherTypeForecast = new List<string>();
             Random rnd = new Random();
-            weatherTypeForecast.Add(weatherType[rnd.Next(0, 4)]);
-            weatherTypeForecast.Add(weatherType[rnd.Next(0, 4)]);
-            weatherTypeForecast.Add(weatherType[rnd.Next(0, 4)]);
-            weatherTypeForecast.Add(weatherType[rnd.Next(0, 4)]);
-            weatherTypeForecast.Add(weatherType[rnd.Next(0, 4)]);
-            weatherTypeForecast.Add(weatherType[rnd.Next(0, 4)]);
-            weatherTypeForecast.Add(weatherType[rnd.Next(0, 4)]);
+            weatherTypeForecast.Add(weatherTypeList[rnd.Next(0, 4)]);
+            weatherTypeForecast.Add(weatherTypeList[rnd.Next(0, 4)]);
+            weatherTypeForecast.Add(weatherTypeList[rnd.Next(0, 4)]);
+            weatherTypeForecast.Add(weatherTypeList[rnd.Next(0, 4)]);
+            weatherTypeForecast.Add(weatherTypeList[rnd.Next(0, 4)]);
+            weatherTypeForecast.Add(weatherTypeList[rnd.Next(0, 4)]);
+            weatherTypeForecast.Add(weatherTypeList[rnd.Next(0, 4)]);
 
             return weatherTypeForecast;
         }

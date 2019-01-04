@@ -4,3 +4,4 @@ D:\devCodeCamp\Technetium\Projects\C#\LemonadeStand\dCCLemonadeStand\LemonadeSta
 D:\devCodeCamp\Technetium\Projects\C#\LemonadeStand\dCCLemonadeStand\LemonadeStand\obj\Debug\LemonadeStand.csproj.CoreCompileInputs.cache
 D:\devCodeCamp\Technetium\Projects\C#\LemonadeStand\dCCLemonadeStand\LemonadeStand\obj\Debug\LemonadeStand.exe
 D:\devCodeCamp\Technetium\Projects\C#\LemonadeStand\dCCLemonadeStand\LemonadeStand\obj\Debug\LemonadeStand.pdb
+D:\devCodeCamp\Technetium\Projects\C#\LemonadeStand\dCCLemonadeStand\LemonadeStand\obj\Debug\LemonadeStand.csprojAssemblyReference.cache

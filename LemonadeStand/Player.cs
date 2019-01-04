@@ -10,6 +10,7 @@ namespace LemonadeStand
     {
         public string firstName;
         public double playerMoney = 25;
+        public double cupPrice;
 
         public Inventory playerInventory = new Inventory();
 
@@ -47,14 +48,30 @@ namespace LemonadeStand
         }
 
        
-
-        public void SetCupPrice()
+        //Need to work on this yet
+        public double SetCupPrice()
         {
-
+            Console.WriteLine("Enter the selling price(in cents) of the cup :");
+            cupPrice = double.Parse(Console.ReadLine())/100;
+            return cupPrice;
         }
 
-        public void SellLemonade()
+        //Need to work on this yet
+        public void SellLemonade(List<Customer>dayCustomers)
         {
+            for(int i = 0; i <= dayCustomers.Count; i++)
+            {
+                //if (dayCustomers[i].BuyLemonade() == "true")
+                //{
+                    
+                //}
+            }
+            
+        }
+
+        public void CreateRecipe()
+        {
+            
 
         }
     }
