@@ -9,7 +9,25 @@ namespace LemonadeStand
     class Player
     {
         public string firstName;
-        public double playerMoney = 25;
+        private double playerMoney = 100;
+        public double PlayerMoney
+        {
+            get { return playerMoney; }
+            set
+            {
+                
+                if (value > 0)
+                {
+                    playerMoney = value;
+                }
+                else
+                {
+                    Console.WriteLine("You don't have enough money");
+                    value = 0;
+                }
+            }
+        }
+
         public double cupPrice;
 
         public Inventory playerInventory = new Inventory();
@@ -17,7 +35,7 @@ namespace LemonadeStand
         //constructor
         public Player()
         {
-
+            
         }
 
         //member methods
@@ -63,7 +81,7 @@ namespace LemonadeStand
             {
                 //if (dayCustomers[i].BuyLemonade() == "true")
                 //{
-                    
+
                 //}
             }
             
@@ -71,8 +89,32 @@ namespace LemonadeStand
 
         public void CreateRecipe()
         {
-            
+            Console.WriteLine("1 Pitcher amounts to 5 Cups of lemonade");
+            Console.WriteLine("How many Pitchers do you want to make for today");
+            int pitchers = int.Parse(Console.ReadLine());
 
+            Console.WriteLine("How many Lemons you want to use per pitcher?");
+            int lemonsUsed = int.Parse(Console.ReadLine());
+            playerInventory.lemons -= lemonsUsed;
+
+            Console.WriteLine("How many Sugar Cubes you want to put in a pitcher?");
+            int sugarUsed = int.Parse(Console.ReadLine());
+            playerInventory.sugarCubes -= sugarUsed;
+
+            Console.WriteLine("How many Ice Cubes you want to put in a pitcher?");
+            int iceUsed = int.Parse(Console.ReadLine());
+            playerInventory.iceCubes -= iceUsed;
+
+            DisplayInventory();
+        }
+        public void DisplayInventory()
+        {
+            Console.Clear();
+            Console.WriteLine($"You have {playerInventory.cups} cups left.");
+            Console.WriteLine($"You have {playerInventory.lemons} lemons left.");
+            Console.WriteLine($"You have {playerInventory.sugarCubes} Sugar Cubes left.");
+            Console.WriteLine($"You have {playerInventory.iceCubes} Ice Cubes left.");
+            Console.WriteLine($"You have ${PlayerMoney} left");
         }
     }
 }

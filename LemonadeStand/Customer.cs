@@ -8,13 +8,15 @@ namespace LemonadeStand
 {
     class Customer
     {
-        
+        //member variables
         public int chanceToBuy = 10;
         
         
 
         //member methods
 
+
+        //Method to affect the sales with the price of lemonade
         public void CustomerExpectedPrice(Player player)
         {
             
@@ -28,6 +30,8 @@ namespace LemonadeStand
                 }
             }
         }
+
+        //Method for customer decision to buy or not based on weather/temperature and how much they are willing to pay
         public virtual bool BuyLemonade(Weather weather, Player player)
         {
             //weather affects

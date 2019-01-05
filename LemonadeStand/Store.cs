@@ -14,6 +14,8 @@ namespace LemonadeStand
         public double sugarCubeCost;
         public double iceCubeCost;
 
+        public Inventory storeInventory = new Inventory();
+
         //constructor
         public Store()
         {
@@ -31,12 +33,9 @@ namespace LemonadeStand
         {
             Console.WriteLine("How many CUPS would you like to purchase?");
             int response = int.Parse(Console.ReadLine());
-            for(int i = 0; i < response; i++)
-            {
-                Cups playerCups = new Cups();
-                player.playerInventory.cups.Add(playerCups);
-                player.playerMoney -= cupCost;
-            }
+            player.playerInventory.cups += response;
+            player.PlayerMoney -= cupCost*response;
+            Console.WriteLine($"Money ${player.PlayerMoney}");
         }
 
 
@@ -44,26 +43,20 @@ namespace LemonadeStand
         public void SellLemons(Player player)
         {
             Console.WriteLine("How many LEMONS would you like to purchase?");
-            int response = Console.Read();
-            for (int i = 0; i < response; i++)
-            {
-                Lemons playerLemons = new Lemons();
-                player.playerInventory.lemons.Add(playerLemons);
-                player.playerMoney -= lemonCost;
-            }
+            int response = int.Parse(Console.ReadLine());
+            player.playerInventory.lemons += response;
+            player.PlayerMoney -= lemonCost*response;
+            Console.WriteLine($"Money ${player.PlayerMoney}");
         }
 
         //method to sell sugar
         public void SellSugar(Player player)
         {
             Console.WriteLine("How many SUGAR CUBES would you like to purchase?");
-            int response = Console.Read();
-            for (int i = 0; i < response; i++)
-            {
-                Sugar playerSugar = new Sugar();
-                player.playerInventory.sugarCubes.Add(playerSugar);
-                player.playerMoney -= sugarCubeCost;
-            }
+            int response = int.Parse(Console.ReadLine());
+            player.playerInventory.sugarCubes += response;
+            player.PlayerMoney -= sugarCubeCost*response;
+            Console.WriteLine($"Money ${player.PlayerMoney}");
 
         }
 
@@ -71,13 +64,10 @@ namespace LemonadeStand
         public void SellIce(Player player)
         {
             Console.WriteLine("How many ICE CUBES would you like to purchase?");
-            int response = Console.Read();
-            for (int i = 0; i < response; i++)
-            {
-                Ice playerIceCubes = new Ice();
-                player.playerInventory.iceCubes.Add(playerIceCubes);
-                player.playerMoney -= iceCubeCost;
-            }
+            int response = int.Parse(Console.ReadLine());
+            player.playerInventory.iceCubes += response;
+            player.PlayerMoney -= iceCubeCost*response;
+            Console.WriteLine($"Money ${player.PlayerMoney}");
         }
     }
 }

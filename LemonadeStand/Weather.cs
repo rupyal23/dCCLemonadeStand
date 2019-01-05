@@ -18,7 +18,7 @@ namespace LemonadeStand
         {
             Random todaysWeather = new Random();
             int position = todaysWeather.Next(weatherTypeList.Count);
-            string weatherType = weatherTypeList[position];
+            weatherType = weatherTypeList[position];
             return weatherType;
         }
                  
