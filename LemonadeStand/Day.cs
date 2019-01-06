@@ -16,8 +16,6 @@ namespace LemonadeStand
         public List<Customer> todaysCustomers = new List<Customer>();    //instantiated customers for the day
         public double dayProfit;
         public double dayLoss;
-        public double dayExpense;
-        public double daySales;
         public int customersDidBuy;
 
 
@@ -30,41 +28,44 @@ namespace LemonadeStand
             
         }
 
-        public void PlayerInventory()
-        {
-
-        }
 
         //Need to work on this yet
         public int SellLemonade(Player player)
         {
-            
-            for (int i = 0; i <= todaysCustomers.Count; i++)
+            customersDidBuy = 0;
+            for (int i = 0; i < todaysCustomers.Count; i++)
             {
                 todaysCustomers[i].CustomerExpectedPrice(player);
                 if (todaysCustomers[i].BuyLemonade(dayWeather) == true)
                 {
                     customersDidBuy++;
+                    player.playerInventory.cups--;
                 }
             }
             return customersDidBuy;
         }
 
-        public void CalculateProfit(Player player)
-        {   
-            if(daySales > dayExpense)
+        public void CalculateProfit(Store store, Player player)
+        {
+            player.dailySales = SellLemonade(player) * player.cupPrice;
+            
+            if(player.dailySales > player.dailyExpense)
             {
-                dayProfit = daySales - dayExpense;
+                dayProfit = player.dailySales - player.dailyExpense;
+                Console.WriteLine($"Your Total Profit for the day is ${dayProfit}");
+                player.PlayerMoney += player.dailySales ;
             }
-            else if(daySales < dayExpense)
+            else if(player.dailySales < player.dailyExpense)
             {
-                dayLoss = dayExpense - daySales;
+                dayLoss = player.dailyExpense - player.dailySales;
+                Console.WriteLine($"Your Incurred Loss today of -${dayLoss}");
+                player.PlayerMoney += player.dailySales;
             }
             else
                 Console.WriteLine("Break Even Today");
         }
 
-
+       
         //method to generate number of customers based on weather on the given day
         public void GenerateCustomers(Weather weather)
         {
@@ -78,7 +79,7 @@ namespace LemonadeStand
                 {
                     CreateCustomers();
                 }
-                Console.WriteLine($"Potiential Customer Count today will be around {noOfCustomers}");
+               // Console.WriteLine($"Potiential Customer Count today will be around {noOfCustomers}");
             }
             else if (weather.weatherType == "sunny")
             {
@@ -87,7 +88,7 @@ namespace LemonadeStand
                 {
                     CreateCustomers();
                 }
-                Console.WriteLine($"Potiential Customer Count today will be around {noOfCustomers}");
+                //Console.WriteLine($"Potiential Customer Count today will be around {noOfCustomers}");
             }
             else if ((weather.weatherType == "cloudy" || weather.weatherType == "rainy") && weather.dayTemperature > 55)
             {
@@ -96,7 +97,7 @@ namespace LemonadeStand
                 {
                     CreateCustomers();
                 }
-                Console.WriteLine($"Potiential Customer Count today will be around {noOfCustomers}");
+               // Console.WriteLine($"Potiential Customer Count today will be around {noOfCustomers}");
             }
             else if (weather.weatherType == "rainy" || weather.weatherType == "cloudy")
             {
@@ -105,7 +106,7 @@ namespace LemonadeStand
                 {
                     CreateCustomers();
                 }
-                Console.WriteLine($"Potiential Customer Count today will be around {noOfCustomers}");
+               // Console.WriteLine($"Potiential Customer Count today will be around {noOfCustomers}");
             }
             else if (weather.weatherType == "cold")
             {
@@ -114,7 +115,7 @@ namespace LemonadeStand
                 {
                     CreateCustomers();
                 }
-                Console.WriteLine($"Potiential Customer Count today will be around {noOfCustomers}");
+               // Console.WriteLine($"Potiential Customer Count today will be around {noOfCustomers}");
             }
         }
 

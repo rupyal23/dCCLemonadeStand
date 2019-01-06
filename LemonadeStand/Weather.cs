@@ -48,8 +48,7 @@ namespace LemonadeStand
             {
                 dayTemperature = CreateTemperature(25, 45);
             }
-            Console.WriteLine("Weather today is "+currentDayWeatherType.ToUpper());
-            Console.WriteLine("Temperature High will be "+dayTemperature+" degrees.");
+            
         }
         public List<string> GenerateForecastWeatherType()
         {

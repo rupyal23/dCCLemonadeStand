@@ -27,8 +27,10 @@ namespace LemonadeStand
                 }
             }
         }
-        public double profit;
-        public double loss;
+        public double dailyExpense;
+        public double totalExpense;
+        public double dailySales;
+        public double totalSales;
 
         public double cupPrice;
 
@@ -81,7 +83,10 @@ namespace LemonadeStand
 
         public void CreateRecipe(Store store)
         {
-            Console.WriteLine("1 Pitcher amounts to 5 Cups of lemonade");
+            Console.WriteLine("----------------------CREATE YOUR SECRET RECIPE-------------------");
+            Console.WriteLine("-------------------NOTE - 1 PITCHER AMOUNTS TO 5 CUPS ----------------");
+            Console.WriteLine("------------------------PRESS ENTER TO CONINUE ----------------------");
+            Console.ReadLine();
             Console.WriteLine("How many Pitchers do you want to make for today");
             int pitchers = int.Parse(Console.ReadLine());
 
@@ -90,7 +95,7 @@ namespace LemonadeStand
             int lemonsUsed = int.Parse(Console.ReadLine());
             if (playerInventory.lemons >= lemonsUsed * pitchers)
             {
-                playerInventory.lemons -= lemonsUsed;
+                playerInventory.lemons -= lemonsUsed*pitchers;
             }
             else if (playerInventory.lemons < lemonsUsed * pitchers && playerInventory.lemons > 0)
             {
@@ -110,7 +115,7 @@ namespace LemonadeStand
 
             if (playerInventory.sugarCubes >= sugarUsed * pitchers)
             {
-                playerInventory.sugarCubes -= sugarUsed;
+                playerInventory.sugarCubes -= sugarUsed*pitchers;
             }
             else if(playerInventory.sugarCubes < sugarUsed*pitchers && playerInventory.sugarCubes > 0)
             {
@@ -130,7 +135,7 @@ namespace LemonadeStand
 
             if (playerInventory.iceCubes >= iceUsed * pitchers)
             {
-                playerInventory.iceCubes -= iceUsed;
+                playerInventory.iceCubes -= iceUsed*pitchers;
             }
             else if (playerInventory.iceCubes < iceUsed * pitchers && playerInventory.iceCubes > 0)
             {
@@ -168,13 +173,13 @@ namespace LemonadeStand
 
         public void DisplayInventory()
         {
-            Console.Clear();
-            Console.WriteLine("YOU HAVE");
+            
+            Console.WriteLine("**************************************************YOU HAVE***************************************");
             Console.WriteLine($"------------------------------------------{playerInventory.cups} CUPS ------------------------------------------------------");
             Console.WriteLine($"------------------------------------------{playerInventory.lemons} LEMONS ------------------------------------------------------");
             Console.WriteLine($"------------------------------------------{playerInventory.sugarCubes} SUGAR CUBES ------------------------------------------------------");
             Console.WriteLine($"------------------------------------------{playerInventory.iceCubes} ICE CUBES ------------------------------------------------------");
-            Console.WriteLine($"You have ${PlayerMoney} left");
+            Console.WriteLine($"You have ${PlayerMoney} Cash in hand.");
         }
     }
 }

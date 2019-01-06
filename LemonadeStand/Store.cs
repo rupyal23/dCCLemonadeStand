@@ -39,6 +39,7 @@ namespace LemonadeStand
                 {
                     player.playerInventory.cups += response;
                     player.PlayerMoney -= cupCost * response;
+                    player.dailyExpense += cupCost * response;
                     Console.WriteLine($"Money ${player.PlayerMoney}");
                 }
                 else
@@ -69,6 +70,7 @@ namespace LemonadeStand
                     player.playerInventory.lemons += response;
                     player.PlayerMoney -= lemonCost * response;
                     Console.WriteLine($"Money ${player.PlayerMoney}");
+                    player.dailyExpense += lemonCost * response;
                 }
                 else
                 {
@@ -96,6 +98,7 @@ namespace LemonadeStand
                 {
                     player.playerInventory.sugarCubes += response;
                     player.PlayerMoney -= sugarCubeCost * response;
+                    player.dailyExpense += sugarCubeCost * response;
                     Console.WriteLine($"Money ${player.PlayerMoney}");
                 }
                 else
@@ -124,6 +127,7 @@ namespace LemonadeStand
                 {
                     player.playerInventory.iceCubes += response;
                     player.PlayerMoney -= iceCubeCost * response;
+                    player.dailyExpense += iceCubeCost * response;
                     Console.WriteLine($"Money ${player.PlayerMoney}");
                 }
                 else
