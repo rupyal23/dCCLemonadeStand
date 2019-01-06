@@ -31,43 +31,113 @@ namespace LemonadeStand
         //method to sell cups      
         public void SellCups(Player player)
         {
-            Console.WriteLine("How many CUPS would you like to purchase?");
-            int response = int.Parse(Console.ReadLine());
-            player.playerInventory.cups += response;
-            player.PlayerMoney -= cupCost*response;
-            Console.WriteLine($"Money ${player.PlayerMoney}");
+            try
+            {
+                Console.WriteLine("How many CUPS would you like to purchase?");
+                int response = int.Parse(Console.ReadLine());
+                if (player.PlayerMoney >= cupCost * response)
+                {
+                    player.playerInventory.cups += response;
+                    player.PlayerMoney -= cupCost * response;
+                    Console.WriteLine($"Money ${player.PlayerMoney}");
+                }
+                else
+                {
+                    Console.WriteLine("You don't have enough money");
+                    Console.WriteLine($"Money ${player.PlayerMoney}");
+                    SellCups(player);
+                }
+            }
+            catch(FormatException)
+            {
+                Console.WriteLine("Please enter a valid number. ");
+                SellCups(player);
+            }
         }
 
 
         //method to sell lemons
         public void SellLemons(Player player)
         {
-            Console.WriteLine("How many LEMONS would you like to purchase?");
-            int response = int.Parse(Console.ReadLine());
-            player.playerInventory.lemons += response;
-            player.PlayerMoney -= lemonCost*response;
-            Console.WriteLine($"Money ${player.PlayerMoney}");
+            try
+            {
+                Console.WriteLine("How many LEMONS would you like to purchase?");
+                int response = int.Parse(Console.ReadLine());
+
+                if (player.PlayerMoney >= lemonCost * response)
+                {
+                    player.playerInventory.lemons += response;
+                    player.PlayerMoney -= lemonCost * response;
+                    Console.WriteLine($"Money ${player.PlayerMoney}");
+                }
+                else
+                {
+                    Console.WriteLine("You don't have enough money");
+                    Console.WriteLine($"Money ${player.PlayerMoney}");
+                    SellLemons(player);
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Please enter a valid number.");
+                SellLemons(player);
+            }
         }
 
         //method to sell sugar
         public void SellSugar(Player player)
         {
-            Console.WriteLine("How many SUGAR CUBES would you like to purchase?");
-            int response = int.Parse(Console.ReadLine());
-            player.playerInventory.sugarCubes += response;
-            player.PlayerMoney -= sugarCubeCost*response;
-            Console.WriteLine($"Money ${player.PlayerMoney}");
+            try
+            {
+                Console.WriteLine("How many SUGAR CUBES would you like to purchase?");
+                int response = int.Parse(Console.ReadLine());
 
+                if (player.PlayerMoney >= sugarCubeCost * response)
+                {
+                    player.playerInventory.sugarCubes += response;
+                    player.PlayerMoney -= sugarCubeCost * response;
+                    Console.WriteLine($"Money ${player.PlayerMoney}");
+                }
+                else
+                {
+                    Console.WriteLine("You don't have enough money");
+                    Console.WriteLine($"Money ${player.PlayerMoney}");
+                    SellSugar(player);
+                }
+            }
+            catch(FormatException)
+            {
+                Console.WriteLine("Please enter a valid number.");
+                SellSugar(player);
+            }
         }
 
         //method to sell ice
         public void SellIce(Player player)
         {
-            Console.WriteLine("How many ICE CUBES would you like to purchase?");
-            int response = int.Parse(Console.ReadLine());
-            player.playerInventory.iceCubes += response;
-            player.PlayerMoney -= iceCubeCost*response;
-            Console.WriteLine($"Money ${player.PlayerMoney}");
+            try
+            {   
+                Console.WriteLine("How many ICE CUBES would you like to purchase?");
+                int response = int.Parse(Console.ReadLine());
+
+                if (player.PlayerMoney >= iceCubeCost * response)
+                {
+                    player.playerInventory.iceCubes += response;
+                    player.PlayerMoney -= iceCubeCost * response;
+                    Console.WriteLine($"Money ${player.PlayerMoney}");
+                }
+                else
+                {
+                    Console.WriteLine("You don't have enough money");
+                    Console.WriteLine($"Money ${player.PlayerMoney}");
+                    SellIce(player);
+                }
+            }
+            catch(FormatException)
+            {
+                Console.WriteLine("Please enter a valid number.");
+                SellIce(player);
+            }
         }
     }
 }

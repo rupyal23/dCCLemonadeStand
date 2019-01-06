@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace LemonadeStand
 {
@@ -13,7 +14,12 @@ namespace LemonadeStand
         public string currentDayWeatherType;
         public Weather dayWeather = new Weather();   //instantiated weather for the day
         public List<Customer> todaysCustomers = new List<Customer>();    //instantiated customers for the day
-        
+        public double dayProfit;
+        public double dayLoss;
+        public double dayExpense;
+        public double daySales;
+        public int customersDidBuy;
+
 
         //member methods
         public void CreateDayWeather()
@@ -29,13 +35,42 @@ namespace LemonadeStand
 
         }
 
+        //Need to work on this yet
+        public int SellLemonade(Player player)
+        {
+            
+            for (int i = 0; i <= todaysCustomers.Count; i++)
+            {
+                todaysCustomers[i].CustomerExpectedPrice(player);
+                if (todaysCustomers[i].BuyLemonade(dayWeather) == true)
+                {
+                    customersDidBuy++;
+                }
+            }
+            return customersDidBuy;
+        }
+
+        public void CalculateProfit(Player player)
+        {   
+            if(daySales > dayExpense)
+            {
+                dayProfit = daySales - dayExpense;
+            }
+            else if(daySales < dayExpense)
+            {
+                dayLoss = dayExpense - daySales;
+            }
+            else
+                Console.WriteLine("Break Even Today");
+        }
 
 
         //method to generate number of customers based on weather on the given day
         public void GenerateCustomers(Weather weather)
         {
             Random rnd = new Random();
-            int noOfCustomers; 
+            int noOfCustomers;
+             
             if (weather.weatherType == "hot")
             {
                 noOfCustomers = rnd.Next(110, 140);
@@ -48,7 +83,7 @@ namespace LemonadeStand
             else if (weather.weatherType == "sunny")
             {
                 noOfCustomers = rnd.Next(85, 140);
-                for (int i = 0; i < 100; i++)
+                for (int i = 0; i < noOfCustomers; i++)
                 {
                     CreateCustomers();
                 }
@@ -57,7 +92,7 @@ namespace LemonadeStand
             else if ((weather.weatherType == "cloudy" || weather.weatherType == "rainy") && weather.dayTemperature > 55)
             {
                 noOfCustomers = rnd.Next(70, 95);
-                for (int i = 0; i < 80; i++)
+                for (int i = 0; i < noOfCustomers; i++)
                 {
                     CreateCustomers();
                 }
@@ -66,7 +101,7 @@ namespace LemonadeStand
             else if (weather.weatherType == "rainy" || weather.weatherType == "cloudy")
             {
                 noOfCustomers = rnd.Next(60, 85);
-                for (int i = 0; i < 60; i++)
+                for (int i = 0; i < noOfCustomers; i++)
                 {
                     CreateCustomers();
                 }
@@ -75,7 +110,7 @@ namespace LemonadeStand
             else if (weather.weatherType == "cold")
             {
                 noOfCustomers = rnd.Next(30, 60);
-                for (int i = 0; i < 50; i++)
+                for (int i = 0; i < noOfCustomers; i++)
                 {
                     CreateCustomers();
                 }
@@ -86,10 +121,11 @@ namespace LemonadeStand
         //helper method for generating customers
         public void CreateCustomers()
         {
+            Thread.Sleep(1);
             Random rand = new Random();
             int randomInt = rand.Next(0, 6);
             switch (randomInt)
-            {
+            {   
                 case 0:
                     todaysCustomers.Add(new YoungCustomer());
                     break;

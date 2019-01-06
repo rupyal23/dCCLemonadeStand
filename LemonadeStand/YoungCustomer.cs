@@ -8,10 +8,9 @@ namespace LemonadeStand
 {
     class YoungCustomer : Customer
     {
-        public override bool BuyLemonade(Weather weather, Player player)
+        public override bool BuyLemonade(Weather weather)
         {
-            CustomerExpectedPrice(player);
-
+            
             if (chanceToBuy == 10 && weather.dayTemperature > 32)
             {
                 return true;

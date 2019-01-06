@@ -27,16 +27,21 @@ namespace LemonadeStand
                 {
 
                     chanceToBuy--;
+                    continue;
+                }
+                else
+                {
+                    break;
                 }
             }
         }
 
         //Method for customer decision to buy or not based on weather/temperature and how much they are willing to pay
-        public virtual bool BuyLemonade(Weather weather, Player player)
+        public virtual bool BuyLemonade(Weather weather)
         {
             //weather affects
             //price affects
-            CustomerExpectedPrice(player);
+            
 
             if(chanceToBuy == 10 && weather.dayTemperature > 40)
             {

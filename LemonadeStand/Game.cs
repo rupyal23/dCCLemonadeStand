@@ -22,6 +22,7 @@ namespace LemonadeStand
             //DisplayRules();
             newDay.CreateDayWeather();
             newDay.GenerateCustomers(newDay.dayWeather);
+            DisplayPlayerStats();
            
             myStore.SellCups(player1);
             myStore.SellLemons(player1);
@@ -30,9 +31,13 @@ namespace LemonadeStand
             Console.ReadLine();
             player1.DisplayInventory();
             
-            player1.CreateRecipe();
-            //player1.SetCupPrice();
+            player1.CreateRecipe(myStore);
+            player1.SetCupPrice();
+            
             Console.ReadLine();
+
+            newDay.SellLemonade(player1);
+            Console.WriteLine($"Total {newDay.customersDidBuy} bought your lemonade today"); 
         }
 
         public void DisplayRules()
@@ -48,6 +53,11 @@ namespace LemonadeStand
             double cupPrice = player1.SetCupPrice();
             //newDay.currentDayTemperature;
             //newDay.currentDayWeatherType;
+        }
+
+        public void DisplayPlayerStats()
+        {
+            Console.WriteLine($"---------------------------------Money - ${player1.PlayerMoney}");
         }
     }
 }
