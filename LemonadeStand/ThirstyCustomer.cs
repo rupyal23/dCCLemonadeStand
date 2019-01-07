@@ -14,15 +14,15 @@ namespace LemonadeStand
             {
                 return true;
             }
-            if (chanceToBuy < 10 && chanceToBuy >= 8 && weather.dayTemperature > 45)
+            if (chanceToBuy < 10 && chanceToBuy >= 8 && weather.temperature > 45)
             {
                 return true;
             }
-            if (chanceToBuy >= 5 && chanceToBuy < 8 && weather.dayTemperature > 55)
+            if (chanceToBuy >= 5 && chanceToBuy < 8 && weather.temperature > 55)
             {
                 return true;
             }
-            else if (chanceToBuy < 5 && chanceToBuy >= 3 && weather.dayTemperature > 65)
+            else if (chanceToBuy < 5 && chanceToBuy >= 3 && weather.temperature > 65)
             {
                 return true;
             }

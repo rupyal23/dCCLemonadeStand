@@ -47,7 +47,7 @@ namespace LemonadeStand
 
         public void CalculateProfit(Store store, Player player)
         {
-            player.dailySales = SellLemonade(player) * player.cupPrice;
+            player.dailySales = customersDidBuy * player.cupPrice;
             
             if(player.dailySales > player.dailyExpense)
             {
@@ -71,13 +71,16 @@ namespace LemonadeStand
         {
             Random rnd = new Random();
             int noOfCustomers;
-             
+            Random rand = new Random();
+            
+
             if (weather.weatherType == "hot")
             {
                 noOfCustomers = rnd.Next(110, 140);
                 for (int i = 0; i < noOfCustomers; i++)
                 {
-                    CreateCustomers();
+                    int randomInt = rand.Next(0, 6);
+                    CreateCustomers(randomInt);
                 }
                // Console.WriteLine($"Potiential Customer Count today will be around {noOfCustomers}");
             }
@@ -86,7 +89,8 @@ namespace LemonadeStand
                 noOfCustomers = rnd.Next(85, 140);
                 for (int i = 0; i < noOfCustomers; i++)
                 {
-                    CreateCustomers();
+                    int randomInt = rand.Next(0, 6);
+                    CreateCustomers(randomInt);
                 }
                 //Console.WriteLine($"Potiential Customer Count today will be around {noOfCustomers}");
             }
@@ -95,7 +99,8 @@ namespace LemonadeStand
                 noOfCustomers = rnd.Next(70, 95);
                 for (int i = 0; i < noOfCustomers; i++)
                 {
-                    CreateCustomers();
+                    int randomInt = rand.Next(0, 6);
+                    CreateCustomers(randomInt);
                 }
                // Console.WriteLine($"Potiential Customer Count today will be around {noOfCustomers}");
             }
@@ -104,7 +109,8 @@ namespace LemonadeStand
                 noOfCustomers = rnd.Next(60, 85);
                 for (int i = 0; i < noOfCustomers; i++)
                 {
-                    CreateCustomers();
+                    int randomInt = rand.Next(0, 6);
+                    CreateCustomers(randomInt);
                 }
                // Console.WriteLine($"Potiential Customer Count today will be around {noOfCustomers}");
             }
@@ -113,19 +119,19 @@ namespace LemonadeStand
                 noOfCustomers = rnd.Next(30, 60);
                 for (int i = 0; i < noOfCustomers; i++)
                 {
-                    CreateCustomers();
+                    int randomInt = rand.Next(0, 6);
+                    CreateCustomers(randomInt);
                 }
                // Console.WriteLine($"Potiential Customer Count today will be around {noOfCustomers}");
             }
         }
 
         //helper method for generating customers
-        public void CreateCustomers()
+        public void CreateCustomers(int number)
         {
-            Thread.Sleep(1);
-            Random rand = new Random();
-            int randomInt = rand.Next(0, 6);
-            switch (randomInt)
+            //Thread.Sleep(1);
+            
+            switch (number)
             {   
                 case 0:
                     todaysCustomers.Add(new YoungCustomer());

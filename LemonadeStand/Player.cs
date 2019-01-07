@@ -31,6 +31,7 @@ namespace LemonadeStand
         public double totalExpense;
         public double dailySales;
         public double totalSales;
+        public int pitchers;
 
         public double cupPrice;
 
@@ -84,75 +85,109 @@ namespace LemonadeStand
         public void CreateRecipe(Store store)
         {
             Console.WriteLine("----------------------CREATE YOUR SECRET RECIPE-------------------");
-            Console.WriteLine("-------------------NOTE - 1 PITCHER AMOUNTS TO 5 CUPS ----------------");
+            Console.WriteLine("-------------------NOTE - 1 PITCHER AMOUNTS TO 8 CUPS ----------------");
             Console.WriteLine("------------------------PRESS ENTER TO CONINUE ----------------------");
             Console.ReadLine();
-            Console.WriteLine("How many Pitchers do you want to make for today");
-            int pitchers = int.Parse(Console.ReadLine());
+            ethe:
+            try
+            {
+                Console.WriteLine("How many Pitchers do you want to make for today");
+                pitchers = int.Parse(Console.ReadLine());
+            }
+            catch(FormatException)
+            {
+                Console.WriteLine("Please enter a valid input");
+                goto ethe;
+            }
+            
 
-            LemonAgain: 
-            Console.WriteLine("How many Lemons you want to use per pitcher?");
-            int lemonsUsed = int.Parse(Console.ReadLine());
-            if (playerInventory.lemons >= lemonsUsed * pitchers)
+            LemonAgain:
+            try
             {
-                playerInventory.lemons -= lemonsUsed*pitchers;
+                Console.WriteLine("How many Lemons you want to use per pitcher?");
+                int lemonsUsed = int.Parse(Console.ReadLine());
+                if (playerInventory.lemons >= lemonsUsed * pitchers)
+                {
+                    playerInventory.lemons -= lemonsUsed * pitchers;
+                }
+                else if (playerInventory.lemons < lemonsUsed * pitchers && playerInventory.lemons > 0)
+                {
+                    Console.WriteLine($"You don't have enough lemons. Only {playerInventory.lemons} lemons left.");
+                    goto LemonAgain;
+                }
+                else
+                {
+                    Console.WriteLine($"You have {playerInventory.lemons} lemons left.");
+                    store.SellLemons(this);
+                    goto LemonAgain;
+                }
             }
-            else if (playerInventory.lemons < lemonsUsed * pitchers && playerInventory.lemons > 0)
+            catch(FormatException)
             {
-                Console.WriteLine($"You don't have enough lemons. Only {playerInventory.lemons} lemons left.");
+                Console.WriteLine("Please enter a valid input");
                 goto LemonAgain;
             }
-            else
-            {
-                Console.WriteLine($"You have {playerInventory.lemons} lemons left.");
-                store.SellLemons(this);
-                goto LemonAgain;
-            }
+           
+            
 
             SugarAgain:
-            Console.WriteLine("How many Sugar Cubes you want to put in a pitcher?");
-            int sugarUsed = int.Parse(Console.ReadLine());
+            try
+            {
+                Console.WriteLine("How many Sugar Cubes you want to put in a pitcher?");
+                int sugarUsed = int.Parse(Console.ReadLine());
 
-            if (playerInventory.sugarCubes >= sugarUsed * pitchers)
-            {
-                playerInventory.sugarCubes -= sugarUsed*pitchers;
+                if (playerInventory.sugarCubes >= sugarUsed * pitchers)
+                {
+                    playerInventory.sugarCubes -= sugarUsed * pitchers;
+                }
+                else if (playerInventory.sugarCubes < sugarUsed * pitchers && playerInventory.sugarCubes > 0)
+                {
+                    Console.WriteLine($"You don't have enough Sugar Cubes. Only {playerInventory.sugarCubes} Cubes left.");
+                    goto SugarAgain;
+                }
+                else
+                {
+                    Console.WriteLine($"You have {playerInventory.sugarCubes} SUGAR CUBES left");
+                    store.SellSugar(this);
+                    goto SugarAgain;
+                }
             }
-            else if(playerInventory.sugarCubes < sugarUsed*pitchers && playerInventory.sugarCubes > 0)
+            catch(FormatException)
             {
-                Console.WriteLine($"You don't have enough Sugar Cubes. Only {playerInventory.sugarCubes} Cubes left.");
+                Console.WriteLine("Please enter a valid input");
                 goto SugarAgain;
             }
-            else
-            {
-                Console.WriteLine($"You have {playerInventory.sugarCubes} SUGAR CUBES left");
-                store.SellSugar(this);
-                goto SugarAgain;
-            }
+           
 
             IceAgain:
-            Console.WriteLine("How many Ice Cubes you want to put in a pitcher?");
-            int iceUsed = int.Parse(Console.ReadLine());
+            try
+            {
+                Console.WriteLine("How many Ice Cubes you want to put in a pitcher?");
+                int iceUsed = int.Parse(Console.ReadLine());
 
-            if (playerInventory.iceCubes >= iceUsed * pitchers)
-            {
-                playerInventory.iceCubes -= iceUsed*pitchers;
+                if (playerInventory.iceCubes >= iceUsed * pitchers)
+                {
+                    playerInventory.iceCubes -= iceUsed * pitchers;
+                }
+                else if (playerInventory.iceCubes < iceUsed * pitchers && playerInventory.iceCubes > 0)
+                {
+                    Console.WriteLine($"You don't have enough Ice Cubes. Only {playerInventory.iceCubes} Cubes left.");
+                    goto IceAgain;
+                }
+                else
+                {
+                    Console.WriteLine($"You have {playerInventory.iceCubes} ICE CUBES left");
+                    store.SellIce(this);
+                    goto IceAgain;
+                }
             }
-            else if (playerInventory.iceCubes < iceUsed * pitchers && playerInventory.iceCubes > 0)
+            catch(FormatException)
             {
-                Console.WriteLine($"You don't have enough Ice Cubes. Only {playerInventory.iceCubes} Cubes left.");
+                Console.WriteLine("Please enter a valid input");
                 goto IceAgain;
             }
-            else
-            {
-                Console.WriteLine($"You have {playerInventory.iceCubes} ICE CUBES left");
-                store.SellIce(this);
-                goto IceAgain;
-            }
-
             DisplayInventory();
         }
-
-
 
         //public void ChooseIngredient()
         //{
@@ -175,10 +210,10 @@ namespace LemonadeStand
         {
             
             Console.WriteLine("**************************************************YOU HAVE***************************************");
-            Console.WriteLine($"------------------------------------------{playerInventory.cups} CUPS ------------------------------------------------------");
-            Console.WriteLine($"------------------------------------------{playerInventory.lemons} LEMONS ------------------------------------------------------");
-            Console.WriteLine($"------------------------------------------{playerInventory.sugarCubes} SUGAR CUBES ------------------------------------------------------");
-            Console.WriteLine($"------------------------------------------{playerInventory.iceCubes} ICE CUBES ------------------------------------------------------");
+            Console.WriteLine($"------------------------------------------{playerInventory.cups} CUPS------------------------------------------------------");
+            Console.WriteLine($"------------------------------------------{playerInventory.lemons} LEMONS------------------------------------------------------");
+            Console.WriteLine($"------------------------------------------{playerInventory.sugarCubes} SUGAR CUBES------------------------------------------------------");
+            Console.WriteLine($"------------------------------------------{playerInventory.iceCubes} ICE CUBES------------------------------------------------------");
             Console.WriteLine($"You have ${PlayerMoney} Cash in hand.");
         }
     }

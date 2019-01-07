@@ -12,7 +12,9 @@ namespace LemonadeStand
         public List<string> weatherTypeList = new List<string>() { "hot", "sunny", "cloudy", "rainy", "cold" };
         public string weatherType;
         public int temperature;
-        
+        public List<int> temperatureForecast = new List<int>();
+        public List<string> weatherList = new List<string>();
+
         //member methods
         public string CreateWeatherType()
         {
@@ -67,12 +69,9 @@ namespace LemonadeStand
 
         public void GenerateForecastTemperature()
         {
-            List<int> temperatureForecast = new List<int>();
             Random rand = new Random();
 
-            List<string> weatherList = new List<string>();
             weatherList = GenerateForecastWeatherType();
-
 
             for (int i = 0; i < weatherList.Count; i++)
             {
@@ -94,12 +93,19 @@ namespace LemonadeStand
                 }
             }
 
+            DisplayForecast();
+        }
+
+        //gotta do something with this yet/maybe display the forecast here instead from generateforeacasttemp method
+        //USED SOLID - displayed forecast separate instead on in generateforecasttemp
+        public void DisplayForecast()
+        {
             List<string> ForecastList = new List<string>();
-            for(int i = 0; i < 7; i++)
+            for (int i = 0; i < 7; i++)
             {
                 ForecastList.Add(weatherList[i].ToUpper() + " with high Temperature of " + temperatureForecast[i] + " degrees Fahrenheit.");
             }
-          
+
             string currentDay = DateTime.Now.DayOfWeek.ToString();
             Console.WriteLine("Today is : " + currentDay);
             Console.WriteLine("Forecast for next 7 days is : ");
@@ -107,12 +113,6 @@ namespace LemonadeStand
             {
                 Console.WriteLine(element.ToString());
             }
-        }
-
-        //gotta do something with this yet/maybe display the forecast here instead from generateforeacasttemp method
-        public void DisplayForecast()
-        {
-            
         }
     }
 }

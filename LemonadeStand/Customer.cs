@@ -43,19 +43,19 @@ namespace LemonadeStand
             //price affects
             
 
-            if(chanceToBuy == 10 && weather.dayTemperature > 40)
+            if(chanceToBuy == 10 && weather.temperature > 40)
             {
                 return true;
             }
-            if(chanceToBuy < 10 && chanceToBuy >= 8 && weather.dayTemperature > 60)
+            if(chanceToBuy < 10 && chanceToBuy >= 8 && weather.temperature > 60)
             {
                 return true;
             }
-            if(chanceToBuy >= 5 && chanceToBuy < 8 && weather.dayTemperature > 70)
+            if(chanceToBuy >= 5 && chanceToBuy < 8 && weather.temperature > 70)
             {
                 return true;
             }
-            else if(chanceToBuy < 5 && chanceToBuy >= 3 && weather.dayTemperature > 95)
+            else if(chanceToBuy < 5 && chanceToBuy >= 3 && weather.temperature > 95)
             {
                 return true;
             }

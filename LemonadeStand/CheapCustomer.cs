@@ -10,19 +10,19 @@ namespace LemonadeStand
     {
         public override bool BuyLemonade(Weather weather)
         {
-            if (chanceToBuy == 10 && weather.dayTemperature > 80)
+            if (chanceToBuy == 10 && weather.temperature > 80)
             {
                 return true;
             }
-            if (chanceToBuy < 10 && chanceToBuy >= 8 && weather.dayTemperature > 82)
+            if (chanceToBuy < 10 && chanceToBuy >= 8 && weather.temperature > 82)
             {
                 return true;
             }
-            if (chanceToBuy >= 5 && chanceToBuy < 8 && weather.dayTemperature > 90)
+            if (chanceToBuy >= 5 && chanceToBuy < 8 && weather.temperature > 90)
             {
                 return true;
             }
-            else if (chanceToBuy < 5 && chanceToBuy >= 3 && weather.dayTemperature > 95)
+            else if (chanceToBuy < 5 && chanceToBuy >= 3 && weather.temperature > 95)
             {
                 return true;
             }
