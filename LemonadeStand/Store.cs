@@ -96,12 +96,12 @@ namespace LemonadeStand
                 if (response.ToString().ToLower() == "banana" || response.ToString().ToLower() == "bananas" || response.ToString().ToLower() == "bannanas")
                 {
                     Console.WriteLine("Quit with Bananas Now!");
-                    SellCups(player);
+                    SellLemons(player);
                 }
                 else
                 {
                     Console.WriteLine("Please enter a valid number. ");
-                    SellCups(player);
+                    SellLemons(player);
                 }
             }
         }
@@ -134,12 +134,12 @@ namespace LemonadeStand
                 if (response.ToString().ToLower() == "banana" || response.ToString().ToLower() == "bananas" || response.ToString().ToLower() == "bannanas")
                 {
                     Console.WriteLine("Quit with Bananas Now!");
-                    SellCups(player);
+                    SellSugar(player);
                 }
                 else
                 {
                     Console.WriteLine("Please enter a valid number. ");
-                    SellCups(player);
+                    SellSugar(player);
                 }
             }
         }
@@ -172,12 +172,12 @@ namespace LemonadeStand
                 if (response.ToString().ToLower() == "banana" || response.ToString().ToLower() == "bananas" || response.ToString().ToLower() == "bannanas")
                 {
                     Console.WriteLine("Quit with Bananas Now!");
-                    SellCups(player);
+                    SellIce(player);
                 }
                 else
                 {
                     Console.WriteLine("Please enter a valid number. ");
-                    SellCups(player);
+                    SellIce(player);
                 }
             }
         }

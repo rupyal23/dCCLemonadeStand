@@ -103,7 +103,7 @@ namespace LemonadeStand
             List<string> ForecastList = new List<string>();
             for (int i = 0; i < 7; i++)
             {
-                ForecastList.Add(weatherList[i].ToUpper() + " with high Temperature of " + temperatureForecast[i] + " degrees Fahrenheit.");
+                ForecastList.Add(weatherList[i].ToUpper() + " with high Temperature of " + temperatureForecast[i] + "°F.");
             }
 
             string currentDay = DateTime.Now.DayOfWeek.ToString();

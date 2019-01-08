@@ -9,7 +9,7 @@ namespace LemonadeStand
     class Player
     {
         public string firstName;
-        private double playerMoney = 100;
+        private double playerMoney = 50;
         public double PlayerMoney
         {
             get { return playerMoney; }
@@ -75,8 +75,16 @@ namespace LemonadeStand
         //method to set up the price of the cup
         public double SetCupPrice()
         {
-            Console.WriteLine("Enter the selling price(in cents) of the cup :");
-            cupPrice = double.Parse(Console.ReadLine()) / 100;
+            try
+            {
+                Console.WriteLine("Enter the selling price(in cents) of the cup :");
+                cupPrice = double.Parse(Console.ReadLine()) / 100;
+            }
+            catch(FormatException)
+            {
+                Console.WriteLine("Please enter a valid input");
+                SetCupPrice();
+            }   
             return cupPrice;
         }
 
@@ -88,20 +96,29 @@ namespace LemonadeStand
             Console.WriteLine("-------------------NOTE - 1 PITCHER AMOUNTS TO 8 CUPS ----------------");
             Console.WriteLine("------------------------PRESS ENTER TO CONINUE ----------------------");
             Console.ReadLine();
-            ethe:
+            AddCups(store);
+            AddLemons(store);
+            AddSugar(store);
+            AddIce(store);
+        }
+
+        //USED SOLID ON ALL INGREDIENTS
+        public void AddCups(Store store)
+        {
             try
             {
                 Console.WriteLine("How many Pitchers do you want to make for today");
                 pitchers = int.Parse(Console.ReadLine());
             }
-            catch(FormatException)
+            catch (FormatException)
             {
                 Console.WriteLine("Please enter a valid input");
-                goto ethe;
+                AddCups(store);
             }
-            
+        }
 
-            LemonAgain:
+        public void AddLemons(Store store)
+        {
             try
             {
                 Console.WriteLine("How many Lemons you want to use per pitcher?");
@@ -113,24 +130,24 @@ namespace LemonadeStand
                 else if (playerInventory.lemons < lemonsUsed * pitchers && playerInventory.lemons > 0)
                 {
                     Console.WriteLine($"You don't have enough lemons. Only {playerInventory.lemons} lemons left.");
-                    goto LemonAgain;
+                    AddLemons(store);
                 }
                 else
                 {
                     Console.WriteLine($"You have {playerInventory.lemons} lemons left.");
                     store.SellLemons(this);
-                    goto LemonAgain;
+                    AddLemons(store);
                 }
             }
-            catch(FormatException)
+            catch (FormatException)
             {
                 Console.WriteLine("Please enter a valid input");
-                goto LemonAgain;
+                AddLemons(store);
             }
-           
-            
+        }
 
-            SugarAgain:
+        public void AddSugar(Store store)
+        {
             try
             {
                 Console.WriteLine("How many Sugar Cubes you want to put in a pitcher?");
@@ -143,23 +160,24 @@ namespace LemonadeStand
                 else if (playerInventory.sugarCubes < sugarUsed * pitchers && playerInventory.sugarCubes > 0)
                 {
                     Console.WriteLine($"You don't have enough Sugar Cubes. Only {playerInventory.sugarCubes} Cubes left.");
-                    goto SugarAgain;
+                    AddSugar(store);
                 }
                 else
                 {
                     Console.WriteLine($"You have {playerInventory.sugarCubes} SUGAR CUBES left");
                     store.SellSugar(this);
-                    goto SugarAgain;
+                    AddSugar(store);
                 }
             }
-            catch(FormatException)
+            catch (FormatException)
             {
                 Console.WriteLine("Please enter a valid input");
-                goto SugarAgain;
+                AddSugar(store);
             }
-           
+        }
 
-            IceAgain:
+        public void AddIce(Store store)
+        {
             try
             {
                 Console.WriteLine("How many Ice Cubes you want to put in a pitcher?");
@@ -172,23 +190,21 @@ namespace LemonadeStand
                 else if (playerInventory.iceCubes < iceUsed * pitchers && playerInventory.iceCubes > 0)
                 {
                     Console.WriteLine($"You don't have enough Ice Cubes. Only {playerInventory.iceCubes} Cubes left.");
-                    goto IceAgain;
+                    AddIce(store);
                 }
                 else
                 {
                     Console.WriteLine($"You have {playerInventory.iceCubes} ICE CUBES left");
                     store.SellIce(this);
-                    goto IceAgain;
+                    AddIce(store);
                 }
             }
-            catch(FormatException)
+            catch (FormatException)
             {
                 Console.WriteLine("Please enter a valid input");
-                goto IceAgain;
+                AddIce(store);
             }
-            DisplayInventory();
         }
-
         //public void ChooseIngredient()
         //{
 

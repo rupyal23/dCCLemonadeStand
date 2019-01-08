@@ -13,8 +13,10 @@ namespace LemonadeStand
         public Store myStore;
         public Day newDay;
         public int currentDayNo;
+        
 
 
+        public int daysToPlay;
 
         //Member Methods
 
@@ -29,7 +31,6 @@ namespace LemonadeStand
 
             player1.GetPlayerName();
             DisplayRules();
-
             Console.WriteLine("Do You want to see the Forecasted Weather for next 7 Days? Enter 'yes' or 'no'.");
             here:
             string userResponse = Console.ReadLine().ToLower();
@@ -41,12 +42,18 @@ namespace LemonadeStand
                     break;
                 case "no":
                     GameLogic();
+                    LastDay();
                     break;
+                case "banana":
+                    Console.WriteLine("No Bananas Please");
+                    goto here;
+                case "bananas":
+                    Console.WriteLine("No Bananas Please");
+                    goto here;
                 default:
                     Console.WriteLine("Please enter a valid response");
                     goto here;
             }
-            LastDay();
             DisplayPlayerStats();
             Console.ReadLine();
         }
@@ -55,9 +62,19 @@ namespace LemonadeStand
         {
             Console.Clear();
             Console.WriteLine("Hey " + player1.firstName + "!. Ready to own a LEMONADE STAND!!");
-            Console.WriteLine("Rules of the Game");
-            Console.WriteLine("Player will have $100 to start their own Lemonade Stand.");
+            var rules = new StringBuilder();
+            rules.AppendLine("********************************************RULES OF THE GAME**************************************************");
+            rules.AppendLine("*                                       Player will start with $50 Cash                                       *");
+            rules.AppendLine("*                        At the start of each day, player can buy items from the store.                       *");
+            rules.AppendLine("*                Player will get the option of setting up the price at the start of each day.                 *");
+            rules.AppendLine("*     Keep in mind the weather conditions as they strongly impact the buying experience of each customer.     *");
+            rules.AppendLine("*            At the end of each day, daily sales/expense and daily profit/loss report is displayed.           *");
+            rules.AppendLine("*           At the end of the game, player can see how much their Lemonade stand has made in total.           *");
+            rules.AppendLine("*****************************************************ENJOY*****************************************************");
+            Console.WriteLine(rules);
+            Console.ReadLine();
         }
+
 
         public void ResetDailyValues()
         {
@@ -76,7 +93,7 @@ namespace LemonadeStand
             try
             {
                 Console.WriteLine("FOR HOW MANY DAYS YOU WANT TO PLAY THE GAME?");
-                int daysToPlay = int.Parse(Console.ReadLine());
+                daysToPlay = int.Parse(Console.ReadLine());
                 Console.WriteLine("Press ENTER TO START");
                 Console.ReadLine();
                 Console.Clear();
@@ -118,7 +135,6 @@ namespace LemonadeStand
                     newDay.CalculateProfit(myStore, player1);
                     DisplayDailyStats();
                     Console.ReadLine();
-
                 }
             }
             catch (FormatException)
@@ -127,10 +143,6 @@ namespace LemonadeStand
                 GameLogic();
             }
         }
-
-
-        
-
         public void CheckForecast()
         {
             Console.WriteLine("Do You want to see the Forecasted Weather for next 7 Days? Enter 'yes' or 'no'.");
@@ -149,7 +161,7 @@ namespace LemonadeStand
             }
         }
 
-        public void LastDay()
+        public virtual void LastDay()
         {
             player1.PlayerMoney += player1.playerInventory.cups * myStore.cupCost;
             player1.PlayerMoney += player1.playerInventory.lemons * myStore.lemonCost;
@@ -163,7 +175,7 @@ namespace LemonadeStand
             Console.WriteLine($"Money received by Liquidating assets - ${playerLiquidatedMoney}");
         }
 
-        public void DisplayPlayerStats()
+        public virtual void DisplayPlayerStats()
         {
             Console.WriteLine($"---------------------------------Money - ${player1.PlayerMoney}--------------------------------");
             double totalProfitMade = player1.totalSales - player1.totalExpense;
@@ -177,14 +189,27 @@ namespace LemonadeStand
             Console.WriteLine($"---------------------------------Today's Loss - ${newDay.dayLoss}-------------------------");
             Console.WriteLine($"---------------------------------Today's Expense - ${player1.dailyExpense}---------------------");
             Console.WriteLine($"---------------------------------Today's Sales - ${player1.dailySales}-------------------------");
-            
-            Console.WriteLine("----------------------------------ALL OF YOUR ICE HAS MELTED----------------------");
             Console.ReadLine();
+            Console.WriteLine("----------------------------------ALL OF YOUR ICE HAS MELTED----------------------");
         }
 
         public virtual void DisplayDayInventoryScreen()
         {
+            var ls = new StringBuilder();
+            ls.AppendLine("                                                            _______                                                ");
+            ls.AppendLine("                                                           ) - | - (                                               ");
+            ls.AppendLine("***********************************************************|_ --- _|***********************************************");
+            ls.AppendLine("*                                   /                    _____|__|____                                            *");
+            ls.AppendLine("*                           '\'----|----/     ---/-      |           |                                             *");
+            ls.AppendLine("*        /-------------------'\'   |   /----'\'   /----------------------------/                                    *");
+            ls.AppendLine("*       /                     '\'__|__/      '\'_/                            /                                     *");
+            ls.AppendLine("*      /-------------------------------------------------------------------/                                      *");
+            ls.AppendLine("*               |                |                   |               |                                            *");
+            ls.AppendLine("*               |              -----                 |             -----                                          *");
+            ls.AppendLine("*            ------                               -------                                                         *");
+            ls.AppendLine("*******************************************************************************************************************");
             Console.WriteLine($"***********************DAY {currentDayNo + 1}*****************************");
+            Console.WriteLine(ls);
             Console.WriteLine("Weather today is " + newDay.currentDayWeatherType.ToUpper());
             Console.WriteLine("Temperature High will be " + newDay.dayWeather.dayTemperature + " degrees.");
             Console.WriteLine($"Potiential Customer Count today will be around {newDay.todaysCustomers.Count}");

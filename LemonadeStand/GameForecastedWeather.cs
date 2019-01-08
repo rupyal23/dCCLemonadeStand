@@ -9,14 +9,21 @@ namespace LemonadeStand
     class GameForecastedWeather : Game
     {
         
+
         public override void GameLogic()
-        {
+        { 
             newDay.dayWeather.GenerateForecastTemperature();
+            Console.ReadLine();
             here:
             try
             {
                 Console.WriteLine("FOR HOW MANY DAYS YOU WANT TO PLAY THE GAME?");
-                int daysToPlay = int.Parse(Console.ReadLine());
+                daysToPlay = int.Parse(Console.ReadLine());
+                if (daysToPlay > 31) 
+                {
+                    Console.WriteLine("Sorry! You only have a month's license to run the stand");
+                    goto here;
+                }
                 Console.WriteLine("Press ENTER TO START");
                 Console.ReadLine();
                 Console.Clear();
@@ -69,9 +76,23 @@ namespace LemonadeStand
                 Console.WriteLine("Please input a valid number of days");
                 goto here;
             }
-
+            LastDay();
+            DisplayPlayerStats();
         }
 
+        public override void LastDay()
+        {
+            player1.PlayerMoney += player1.playerInventory.cups * myStore.cupCost;
+            player1.PlayerMoney += player1.playerInventory.lemons * myStore.lemonCost;
+            player1.PlayerMoney += player1.playerInventory.sugarCubes * myStore.sugarCubeCost;
+            player1.PlayerMoney += player1.playerInventory.iceCubes * myStore.iceCubeCost;
+            double playerLiquidatedMoney = player1.playerInventory.cups * myStore.cupCost + player1.playerInventory.lemons * myStore.lemonCost + player1.playerInventory.sugarCubes * myStore.sugarCubeCost + player1.playerInventory.iceCubes * myStore.iceCubeCost;
+            player1.playerInventory.cups = 0;
+            player1.playerInventory.lemons = 0;
+            player1.playerInventory.sugarCubes = 0;
+            player1.playerInventory.iceCubes = 0;
+            Console.WriteLine($"Money received by Liquidating assets - ${playerLiquidatedMoney}");
+        }
         public override void DisplayDayInventoryScreen()
         {
             Console.WriteLine($"***********************DAY {currentDayNo}*****************************");
@@ -80,6 +101,14 @@ namespace LemonadeStand
             Console.WriteLine($"Potiential Customer Count today will be around {newDay.todaysCustomers.Count}");
             player1.DisplayInventory();
             //Console.ReadLine();
+        }
+
+        public override void DisplayPlayerStats()
+        {
+            Console.WriteLine($"---------------------------------Money - ${player1.PlayerMoney}--------------------------------");
+            double totalProfitMade = player1.totalSales - player1.totalExpense;
+            Console.WriteLine($"Total profit ${totalProfitMade}");
+            Console.WriteLine($"Player Balance ${player1.PlayerMoney}");
         }
     }
 }

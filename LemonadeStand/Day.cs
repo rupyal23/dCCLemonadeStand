@@ -25,9 +25,7 @@ namespace LemonadeStand
             dayWeather.CreateWeather();
             currentDayTemperature = dayWeather.dayTemperature;
             currentDayWeatherType = dayWeather.weatherType;
-            
         }
-
 
         //Need to work on this yet
         public int SellLemonade(Player player)
@@ -48,6 +46,7 @@ namespace LemonadeStand
         public void CalculateProfit(Store store, Player player)
         {
             player.dailySales = customersDidBuy * player.cupPrice;
+            player.totalSales += player.dailySales;
             
             if(player.dailySales > player.dailyExpense)
             {
