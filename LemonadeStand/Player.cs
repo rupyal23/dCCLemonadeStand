@@ -40,7 +40,7 @@ namespace LemonadeStand
         public double cupPrice;
 
         public Inventory playerInventory = new Inventory();
-        public List<Inventory> ingredients = new List<Inventory>(); 
+        
 
         //constructor
         public Player()
