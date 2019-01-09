@@ -12,9 +12,6 @@ namespace LemonadeStand
         {
             Game myGame = new Game();
             myGame.RunGame();
-
-            //Weather getForecast = new Weather();
-            //getForecast.GenerateForecastTemperature();
         }
     }
 }

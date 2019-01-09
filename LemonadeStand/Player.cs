@@ -31,6 +31,10 @@ namespace LemonadeStand
         public double totalExpense;
         public double dailySales;
         public double totalSales;
+        public double dayProfit;
+        public double dayLoss;
+        public double runningProfit;
+        public double runningLoss;
         public int pitchers;
 
         public double cupPrice;
@@ -92,9 +96,9 @@ namespace LemonadeStand
 
         public void CreateRecipe(Store store)
         {
-            Console.WriteLine("----------------------CREATE YOUR SECRET RECIPE-------------------");
+            Console.WriteLine("----------------------CREATE YOUR SECRET RECIPE-----------------------");
             Console.WriteLine("-------------------NOTE - 1 PITCHER AMOUNTS TO 8 CUPS ----------------");
-            Console.WriteLine("------------------------PRESS ENTER TO CONINUE ----------------------");
+            Console.WriteLine("------------------------PRESS ENTER TO CONINUE -----------------------");
             Console.ReadLine();
             AddCups(store);
             AddLemons(store);
@@ -109,6 +113,8 @@ namespace LemonadeStand
             {
                 Console.WriteLine("How many Pitchers do you want to make for today");
                 pitchers = int.Parse(Console.ReadLine());
+                checkPitchers(store);
+
             }
             catch (FormatException)
             {
@@ -205,22 +211,17 @@ namespace LemonadeStand
                 AddIce(store);
             }
         }
-        //public void ChooseIngredient()
-        //{
 
-        //    Console.WriteLine($"How many {ingredient} you want to put in a pitcher");
-        //    int ingredientUsed = int.Parse(Console.ReadLine());
-        //    if (playerInventory.ingredient >= ingredientUsed * pitchers)
-        //    {
-        //        playerInventory.ingredient -= ingredientUsed;
-        //    }
-        //    else if (playerInventory.ingredient < ingredientUsed * pitchers && playerInventory.ingredient > 0)
-        //    {
-        //        Console.WriteLine($"You don't have enough {ingredient}. Only {ingredientUsed.count} left");
-        //        ChooseIngredient(ingredient);
-        //    }
-
-        //}
+        public void checkPitchers(Store store)
+        {
+            if(pitchers*8 > playerInventory.cups)
+            {
+                Console.WriteLine("You don't have enough cups!");
+                store.SellCups(this);
+                AddCups(store);
+            }
+        }
+       
 
         public void DisplayInventory()
         {

@@ -14,8 +14,8 @@ namespace LemonadeStand
         public string currentDayWeatherType;
         public Weather dayWeather = new Weather();   //instantiated weather for the day
         public List<Customer> todaysCustomers = new List<Customer>();    //instantiated customers for the day
-        public double dayProfit;
-        public double dayLoss;
+        
+        
         public int customersDidBuy;
 
 
@@ -33,35 +33,60 @@ namespace LemonadeStand
             customersDidBuy = 0;
             for (int i = 0; i < todaysCustomers.Count; i++)
             {
-                todaysCustomers[i].CustomerExpectedPrice(player);
-                if (todaysCustomers[i].BuyLemonade(dayWeather) == true)
-                {
+               todaysCustomers[i].CustomerExpectedPrice(player);
+               if (todaysCustomers[i].BuyLemonade(dayWeather) == true && player.playerInventory.cups > 0)
+               {
                     customersDidBuy++;
                     player.playerInventory.cups--;
-                }
+                    if(customersDidBuy == todaysCustomers.Count)
+                    {
+                        Console.WriteLine("YOU SOLD OUT OF LEMONADE! SHOULD'VE MADE MORE PITCHERS");
+                    }
+               }
             }
             return customersDidBuy;
         }
 
-        public void CalculateProfit(Store store, Player player)
+        public void CalculateProfit(Player player)
         {
+            
             player.dailySales = customersDidBuy * player.cupPrice;
             player.totalSales += player.dailySales;
-            
-            if(player.dailySales > player.dailyExpense)
+            player.totalExpense += player.dailyExpense;
+
+            if (player.dailySales > player.dailyExpense)
             {
-                dayProfit = player.dailySales - player.dailyExpense;
-                Console.WriteLine($"Your Total Profit for the day is ${dayProfit}");
+                player.dayProfit = player.dailySales - player.dailyExpense;
                 player.PlayerMoney += player.dailySales ;
             }
             else if(player.dailySales < player.dailyExpense)
             {
-                dayLoss = player.dailyExpense - player.dailySales;
-                Console.WriteLine($"Your Incurred Loss today of -${dayLoss}");
+                player.dayLoss = player.dailyExpense - player.dailySales;
                 player.PlayerMoney += player.dailySales;
             }
             else
                 Console.WriteLine("Break Even Today");
+        }
+
+        //method to calculate the running profit or loss
+        public void RunningProfitLoss(Player player)
+        {
+            //added melted ice to the loss
+            player.totalExpense += player.playerInventory.iceCubes * .10;
+            if(player.totalSales > player.totalExpense)
+            {
+                player.runningProfit = player.totalSales - player.totalExpense;
+                Console.WriteLine($"------------------------------TOTAL PROFIT SO FAR : {String.Format("{0:0.##}", player.runningProfit)}------------------------");
+            }
+            else if(player.totalSales < player.totalExpense)
+            {
+                player.runningLoss = player.totalSales - player.totalExpense;
+                Console.WriteLine($"------------------------------TOTAL LOSS SO FAR : {String.Format("{0:0.##}", player.runningLoss)}------------------------");
+            }
+            else
+            {
+                Console.WriteLine("-----------------------------------BREAK EVEN SO FAR---------------------------");
+            }
         }
 
        
@@ -78,57 +103,51 @@ namespace LemonadeStand
                 noOfCustomers = rnd.Next(110, 140);
                 for (int i = 0; i < noOfCustomers; i++)
                 {
-                    int randomInt = rand.Next(0, 6);
+                    int randomInt = rand.Next(0, 8);
                     CreateCustomers(randomInt);
                 }
-               // Console.WriteLine($"Potiential Customer Count today will be around {noOfCustomers}");
             }
             else if (weather.weatherType == "sunny")
             {
                 noOfCustomers = rnd.Next(85, 140);
                 for (int i = 0; i < noOfCustomers; i++)
                 {
-                    int randomInt = rand.Next(0, 6);
+                    int randomInt = rand.Next(0, 8);
                     CreateCustomers(randomInt);
                 }
-                //Console.WriteLine($"Potiential Customer Count today will be around {noOfCustomers}");
             }
             else if ((weather.weatherType == "cloudy" || weather.weatherType == "rainy") && weather.dayTemperature > 55)
             {
                 noOfCustomers = rnd.Next(70, 95);
                 for (int i = 0; i < noOfCustomers; i++)
                 {
-                    int randomInt = rand.Next(0, 6);
+                    int randomInt = rand.Next(0, 8);
                     CreateCustomers(randomInt);
                 }
-               // Console.WriteLine($"Potiential Customer Count today will be around {noOfCustomers}");
             }
             else if (weather.weatherType == "rainy" || weather.weatherType == "cloudy")
             {
                 noOfCustomers = rnd.Next(60, 85);
                 for (int i = 0; i < noOfCustomers; i++)
                 {
-                    int randomInt = rand.Next(0, 6);
+                    int randomInt = rand.Next(0, 8);
                     CreateCustomers(randomInt);
                 }
-               // Console.WriteLine($"Potiential Customer Count today will be around {noOfCustomers}");
             }
             else if (weather.weatherType == "cold")
             {
                 noOfCustomers = rnd.Next(30, 60);
                 for (int i = 0; i < noOfCustomers; i++)
                 {
-                    int randomInt = rand.Next(0, 6);
+                    int randomInt = rand.Next(0, 8);
                     CreateCustomers(randomInt);
                 }
-               // Console.WriteLine($"Potiential Customer Count today will be around {noOfCustomers}");
             }
         }
 
         //helper method for generating customers
         public void CreateCustomers(int number)
         {
-            //Thread.Sleep(1);
             
             switch (number)
             {   
@@ -152,6 +171,12 @@ namespace LemonadeStand
                     break;
                 case 6:
                     todaysCustomers.Add(new RunningCustomer());
+                    break;
+                case 7:
+                    todaysCustomers.Add(new NeverBuyCustomer());
+                    break;
+                case 8:
+                    todaysCustomers.Add(new AlwaysBuyCustomer());
                     break;
                 default:
                     break;

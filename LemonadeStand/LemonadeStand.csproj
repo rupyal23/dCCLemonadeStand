@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlwaysBuyCustomer.cs" />
     <Compile Include="CheapCustomer.cs" />
     <Compile Include="ChildCustomer.cs" />
     <Compile Include="Cups.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="Ice.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="Lemons.cs" />
+    <Compile Include="NeverBuyCustomer.cs" />
     <Compile Include="OfficeCustomer.cs" />
     <Compile Include="OldCustomer.cs" />
     <Compile Include="Player.cs" />

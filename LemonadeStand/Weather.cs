@@ -50,7 +50,6 @@ namespace LemonadeStand
             {
                 dayTemperature = CreateTemperature(25, 45);
             }
-            
         }
         public List<string> GenerateForecastWeatherType()
         {
